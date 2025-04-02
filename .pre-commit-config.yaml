@@ -58,13 +58,6 @@ repos:
         types: ["dockerfile"]
         entry: hadolint
 
-  -   repo: https://github.com/commitizen-tools/commitizen
-      rev: v3.1.1
-      hooks:
-      -   id: commitizen
-          name: commitizen
-          args: ['--config', 'pyproject.toml']
-
   # - repo: https://github.com/koalaman/shellcheck-precommit
   #   rev: v0.7.2
   #   hooks:

@@ -1,0 +1,68 @@
+version: 2.1
+
+orbs:
+  aws-cli: circleci/aws-cli@5.2.0
+  docker: circleci/docker@2.8.2
+
+jobs:
+  build-deploy:
+    docker:
+      - image: cimg/python:3.12
+    steps:
+      - checkout  
+      
+      - run:
+          name: Install UV
+          command: |
+            curl -LsSf https://astral.sh/uv/install.sh | sh
+      
+      - run:
+          name: Create venv and install dependencies
+          command: |
+            uv sync --all-extras
+
+      - run:
+          name: Run ruff
+          command: |
+            uv run ruff check . --fix --exit-non-zero-on-fix
+
+      - run:
+          name: Run tests
+          command: |
+            uv run pytest
+
+      - run:
+          name: Create .env file
+          command: |
+            echo "ZILLIZ_CLOUD_URI=${ZILLIZ_CLOUD_URI}" > .env
+            echo "ZILLIZ_TOKEN=${ZILLIZ_TOKEN}" >> .env
+            echo "COLLECTION_NAME=${COLLECTION_NAME}" >> .env
+            echo "PDF_BUCKET_NAME=${PDF_BUCKET_NAME}" >> .env
+            echo "OPENAI_API_KEY=${OPENAI_API_KEY}" >> .env
+            echo "AWS_REGION=${AWS_REGION}" >> .env
+            echo "AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}" >> .env
+            echo "AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}" >> .env
+            echo "AWS_ACCOUNT_ID=${AWS_ACCOUNT_ID}" >> .env
+            echo "REPOSITORY_NAME=${REPOSITORY_NAME}" >> .env
+            echo "IMAGE_NAME=${IMAGE_NAME}" >> .env
+            echo "LAMBDA_FUNCTION_NAME=${LAMBDA_FUNCTION_NAME}" >> .env
+            echo "ROLE_NAME=${ROLE_NAME}" >> .env
+            echo "ROLE_POLICY_NAME=${ROLE_POLICY_NAME}" >> .env
+
+      
+      - aws-cli/setup:
+          profile_name: default
+
+      - setup_remote_docker
+
+      - run:
+          name: Deploy to AWS
+          command: |
+            chmod +x src/build_deploy.sh
+            ./scripts/build_deploy.sh
+
+workflows:
+  version: 2
+  deploy:
+    jobs:
+      - build-deploy

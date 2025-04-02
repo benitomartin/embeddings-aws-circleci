@@ -28,26 +28,64 @@ repos:
   - repo: https://github.com/pre-commit/mirrors-mypy
     rev: v1.15.0
     hooks:
-    -   id: mypy
+      - id: mypy
         args: [--ignore-missing-imports]
 
   - repo: https://github.com/hukkin/mdformat
     rev: 0.7.22
     hooks:
-    - id: mdformat
-      additional_dependencies:
-      - mdformat-gfm
+      - id: mdformat
+        additional_dependencies:
+        - mdformat-gfm
 
   - repo: https://github.com/Yelp/detect-secrets
     rev: v1.5.0
     hooks:
       - id: detect-secrets
 
+  - repo: https://github.com/tox-dev/pyproject-fmt
+    rev: "v2.5.0"
+    hooks:
+      - id: pyproject-fmt
+
+  - repo: https://github.com/hadolint/hadolint
+    rev: v2.12.0
+    hooks:
+      - id: hadolint
+        name: Lint Dockerfiles
+        description: Runs hadolint to lint Dockerfiles
+        language: system
+        types: ["dockerfile"]
+        entry: hadolint
+
+  -   repo: https://github.com/commitizen-tools/commitizen
+      rev: v3.1.1
+      hooks:
+      -   id: commitizen
+          stages: [commit-msg]
+
+  # - repo: https://github.com/koalaman/shellcheck-precommit
+  #   rev: v0.7.2
+  #   hooks:
+  #     - id: shellcheck
+  #       args: ["-e", "SC1091", "SC2086"]
+
+
   - repo: local
     hooks:
       - id: pytest
         name: pytest
         entry: pytest
+        language: system
+        types: [python]
+        pass_filenames: false
+
+  # Cleanup local hook at the end
+  - repo: local
+    hooks:
+      - id: clean-cache
+        name: Clean cache directories
+        entry: /bin/bash -c "find . -type d \( -name '__pycache__' -o -name '.ruff_cache' -o -name '.pytest_cache' -o -name '.mypy_cache' \) -exec rm -rf {} +"
         language: system
         types: [python]
         pass_filenames: false

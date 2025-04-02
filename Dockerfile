@@ -7,7 +7,7 @@ WORKDIR ${LAMBDA_TASK_ROOT}
 COPY requirements.txt ./
 
 # Install dependencies
-RUN pip install -r requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy source code
 COPY lambda_function/lambda_function.py ./lambda_function.py

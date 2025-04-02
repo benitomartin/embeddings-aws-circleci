@@ -6,21 +6,25 @@ This project implements an automated pipeline that processes PDF documents uploa
 
 ```.
 .
-├── src/                            # Source code
-├── lambda_function/                # Lambda handler code
-├── tests/                          # Test files
-│   ├── test_collection_exists.py   # Test collection existence
-│   └── test_collection_mock.py     # Mock tests for collection operations
-├── scripts/                        # Deployment and utility scripts
-│   ├── build_deploy.sh             # Main deployment script
-│   ├── create_roles.sh             # IAM role creation
-│   ├── create_image.sh             # Docker image build and push
-│   └── create_lambda.sh            # Lambda function creation
-├── .circleci/                      # CircleCI configuration
-├── Dockerfile                      # Lambda container definition
-└── pyproject.toml                  # Python project configuration
+├── .circleci/                      
+├── src/                           
+│   ├── create_collection.py        
+│   ├── drop_collection.py         
+│   ├── insert_documents.py        
+│   └── __init__.py                 
+├── lambda_function/                
+│   └── lambda_function.py         
+├── scripts/                      
+│   ├── build_deploy.sh            
+│   ├── create_roles.sh           
+│   ├── create_image.sh            
+│   └── create_lambda.sh          
+├── tests/                        
+│   ├── test_collection_exists.py  
+│   └── test_collection_mock.py     
+├── Dockerfile                     
+└── pyproject.toml                  
 ```
-
 
 ## Prerequisites
 
@@ -125,23 +129,6 @@ uv run pytest
     ```bash
     aws logs tail /aws/lambda/your-lambda-function --follow
     ```
-
-## Dependencies
-
-Main dependencies:
-
-- `langchain-community`: Document processing
-- `langchain_milvus`: Vector database integration
-- `boto3`: AWS SDK
-- `langchain-openai`: OpenAI embeddings
-- `pypdf`: PDF processing
-- `pymilvus`: Milvus client
-
-Development dependencies:
-
-- `mypy`: Static type checking
-- `pytest`: Testing framework
-- `ruff`: Linting and formatting
 
 ## Contributing
 

@@ -36,7 +36,7 @@ if ! aws iam get-role --role-name ${ROLE_NAME} --region ${AWS_REGION} 2>/dev/nul
         --assume-role-policy-document "${ASSUME_ROLE_POLICY}" \
         --region ${AWS_REGION}
 
-    
+
     # Add Lambda execution policy. Provides Put, Get access to S3 and full access to CloudWatch Logs.
     aws iam attach-role-policy \
         --role-name ${ROLE_NAME} \

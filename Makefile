@@ -2,10 +2,10 @@
 
 .PHONY: help clean ruff
 
-all: ruff mypy test clean  
+all: ruff mypy test clean
 
 build-deploy: ## Build and deploy to AWS Lambda
-	
+
 	@echo "Starting build and deploy..."
 	chmod +x ./scripts/build_deploy.sh
 	@echo "Scripts made executable."

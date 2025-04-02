@@ -9,13 +9,13 @@ jobs:
     docker:
       - image: cimg/python:3.12
     steps:
-      - checkout  
-      
+      - checkout
+
       - run:
           name: Install UV
           command: |
             curl -LsSf https://astral.sh/uv/install.sh | sh
-      
+
       - run:
           name: Create venv and install dependencies
           command: |
@@ -49,7 +49,7 @@ jobs:
             echo "ROLE_NAME=${ROLE_NAME}" >> .env
             echo "ROLE_POLICY_NAME=${ROLE_POLICY_NAME}" >> .env
 
-      
+
       - aws-cli/setup:
           profile_name: default
 

@@ -1,4 +1,4 @@
-langchain-community 
+langchain-community
 langchain_milvus
 boto3
 langchain-openai

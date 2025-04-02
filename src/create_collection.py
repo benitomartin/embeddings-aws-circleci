@@ -28,7 +28,7 @@ def create_collection(
     collection_name: str | None = None,
     uri: str | None = None,
     token: str | None = None,
-    dimension: int = 1536
+    dimension: int = 1536,
 ) -> None:
     """Create a new Milvus collection with the specified parameters.
 
@@ -47,28 +47,18 @@ def create_collection(
         raise ValueError("Missing required parameters: collection_name, uri, or token")
 
     # Connect to Zilliz Cloud (Milvus)
-    client = MilvusClient(
-        uri=uri,
-        token=token
-    )
+    client = MilvusClient(uri=uri, token=token)
 
     # Create schema
     schema = create_schema(dimension)
 
     # Prepare index parameters
     index_params = client.prepare_index_params()
-    index_params.add_index(
-        field_name="my_vector",
-        index_type="AUTOINDEX",
-        metric_type="COSINE"
-    )
+    index_params.add_index(field_name="my_vector", index_type="AUTOINDEX", metric_type="COSINE")
 
     # Create collection
-    client.create_collection(
-        collection_name=collection_name,
-        schema=schema,
-        index_params=index_params
-    )
+    client.create_collection(collection_name=collection_name, schema=schema, index_params=index_params)
+
 
 if __name__ == "__main__":
     # Create collection

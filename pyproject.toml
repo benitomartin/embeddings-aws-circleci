@@ -20,12 +20,13 @@ dependencies = [
 [project.optional-dependencies]
 dev = [
     "mypy>=1.15.0",
+    "pre-commit>=4.2.0",
     "pytest>=8.3.5",
     "ruff>=0.11.2",
 ]
 
 ######################################
-# --- LBuild System Configuration --- #
+# --- Build System Configuration --- #
 ######################################
 
 # Build system
@@ -110,8 +111,8 @@ max-complexity = 10
 #########################
 
 [tool.mypy]
-files = "src, lambda_function, tests"  
-ignore_missing_imports = true  
+files = "src, lambda_function, tests"
+ignore_missing_imports = true
 
 #########################
 # --- Testing Tools --- #
@@ -121,4 +122,3 @@ ignore_missing_imports = true
 testpaths = ["tests"]
 python_files = ["test_*.py"]
 addopts = "-ra -v -s"
-

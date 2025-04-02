@@ -1,4 +1,3 @@
-
 import os
 
 import pytest
@@ -8,11 +7,8 @@ from pymilvus import MilvusClient
 @pytest.fixture
 def milvus_client():
     # Initialize Milvus client with environment variables for URI and token
-    client = MilvusClient(
-        uri=os.getenv("ZILLIZ_CLOUD_URI"),
-        token=os.getenv("ZILLIZ_TOKEN")
-    )
-    yield client 
+    client = MilvusClient(uri=os.getenv("ZILLIZ_CLOUD_URI"), token=os.getenv("ZILLIZ_TOKEN"))
+    yield client
     client.close()  # Close the connection after the test
 
 

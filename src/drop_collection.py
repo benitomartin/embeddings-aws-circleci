@@ -4,9 +4,7 @@ from pymilvus import MilvusClient
 
 
 def drop_collection(
-    collection_name: str | None = None,
-    uri: str | None = None,
-    token: str | None = None
+    collection_name: str | None = None, uri: str | None = None, token: str | None = None
 ) -> None:
     """Drop a Milvus collection.
 
@@ -24,10 +22,7 @@ def drop_collection(
         raise ValueError("Missing required parameters: collection_name, uri, or token")
 
     # Connect to Zilliz Cloud (Milvus)
-    client = MilvusClient(
-        uri=uri,
-        token=token
-    )
+    client = MilvusClient(uri=uri, token=token)
 
     # Drop the collection
     client.drop_collection(collection_name=collection_name)

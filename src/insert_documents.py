@@ -6,11 +6,7 @@ from langchain_text_splitters import CharacterTextSplitter
 from pymilvus import MilvusClient
 
 
-def process_pdf(
-    pdf_path: str,
-    chunk_size: int = 512,
-    chunk_overlap: int = 100
-) -> list[dict]:
+def process_pdf(pdf_path: str, chunk_size: int = 512, chunk_overlap: int = 100) -> list[dict]:
     """Process a PDF file and generate embeddings for its content.
 
     Args:
@@ -29,24 +25,18 @@ def process_pdf(
     documents = loader.load()
 
     # Split text
-    text_splitter = CharacterTextSplitter(
-        chunk_size=chunk_size,
-        chunk_overlap=chunk_overlap
-    )
+    text_splitter = CharacterTextSplitter(chunk_size=chunk_size, chunk_overlap=chunk_overlap)
     chunks = text_splitter.split_documents(documents)
 
     # Generate embeddings
     openai_embeddings = OpenAIEmbeddings()
-    
+
     # Prepare data for insertion
     data = []
     for chunk in chunks:
         text = chunk.page_content
         embedding = openai_embeddings.embed_documents([text])[0]
-        data.append({
-            "pdf_text": text,
-            "my_vector": embedding
-        })
+        data.append({"pdf_text": text, "my_vector": embedding})
 
     return data
 
@@ -57,7 +47,7 @@ def insert_documents(
     uri: str | None = None,
     token: str | None = None,
     chunk_size: int = 512,
-    chunk_overlap: int = 100
+    chunk_overlap: int = 100,
 ) -> None:
     """Insert documents from a PDF file into a Milvus collection.
 
@@ -78,10 +68,7 @@ def insert_documents(
         raise ValueError("Missing required parameters: collection_name, uri, or token")
 
     # Connect to Zilliz Cloud (Milvus)
-    client = MilvusClient(
-        uri=uri,
-        token=token
-    )
+    client = MilvusClient(uri=uri, token=token)
 
     # Process PDF and get data
     data = process_pdf(pdf_path, chunk_size, chunk_overlap)
@@ -92,6 +79,7 @@ def insert_documents(
     # Verify collection load state
     load_state = client.get_load_state(collection_name=collection_name)
     print(f"Collection load state: {load_state}")
+
 
 if __name__ == "__main__":
     # Insert documents

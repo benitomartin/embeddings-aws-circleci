@@ -3,7 +3,7 @@
 # Exit immediately if a command fails
 set -e
 
-# Define script paths 
+# Define script paths
 SCRIPT1="scripts/create_roles.sh"
 SCRIPT2="scripts/create_image.sh"
 SCRIPT3="scripts/create_lambda.sh"

@@ -1,5 +1,6 @@
 import os
-from lambda_function.lambda_function import lambda_handler
+
+from aws_lambda_function.lambda_function import lambda_handler
 
 # Set up test event
 TEST_BUCKET = os.getenv("PDF_BUCKET_NAME")

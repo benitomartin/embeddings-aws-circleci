@@ -1,5 +1,4 @@
 import os
-from typing import Optional
 
 from langchain_community.document_loaders import PyPDFLoader
 from langchain_openai import OpenAIEmbeddings
@@ -44,9 +43,9 @@ def process_pdf(pdf_path: str, chunk_size: int = 512, chunk_overlap: int = 100) 
 
 def insert_documents(
     pdf_path: str,
-    collection_name: Optional[str] = None,
-    uri: Optional[str] = None,
-    token: Optional[str] = None,
+    collection_name: str | None = None,
+    uri: str | None = None,
+    token: str | None = None,
     chunk_size: int = 512,
     chunk_overlap: int = 100,
 ) -> None:

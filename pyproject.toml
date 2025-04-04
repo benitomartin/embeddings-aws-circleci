@@ -117,5 +117,5 @@ python_files = [ "test_*.py" ]
 addopts = "-ra -v -s"
 
 [tool.mypy]
-files = "src, lambda_function, tests"
+files = "src, aws_lambda, tests"
 ignore_missing_imports = true

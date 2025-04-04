@@ -17,7 +17,7 @@ The project has been developed as part of the following [blog](XXX)
 │   ├── drop_collection.py
 │   ├── insert_documents.py
 │   └── __init__.py
-├── lambda_function/
+├── aws_lambda/
 │   └── lambda_function.py
 ├── scripts/
 │   ├── build_deploy.sh

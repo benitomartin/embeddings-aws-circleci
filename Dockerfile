@@ -10,7 +10,7 @@ COPY requirements.txt ./
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy source code
-COPY lambda_function/lambda_function.py ./lambda_function.py
+COPY aws_lambda/lambda_function.py ./lambda_function.py
 
 # Command to run the Lambda handler function
 CMD [ "lambda_function.lambda_handler" ]

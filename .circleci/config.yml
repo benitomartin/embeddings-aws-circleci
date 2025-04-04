@@ -58,7 +58,7 @@ jobs:
       - run:
           name: Deploy to AWS
           command: |
-            chmod +x src/build_deploy.sh
+            chmod +x scripts/build_deploy.sh
             ./scripts/build_deploy.sh
 
 workflows:

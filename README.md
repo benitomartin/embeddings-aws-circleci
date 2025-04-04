@@ -7,6 +7,7 @@ This project implements an automated pipeline that processes PDF documents uploa
 ```.
 .
 ├── .circleci/
+│   └── config.yml
 ├── src/
 │   ├── create_collection.py
 │   ├── drop_collection.py
@@ -50,8 +51,8 @@ AWS_REGION=your-aws-region
 AWS_ACCESS_KEY_ID=your-access-key
 AWS_SECRET_ACCESS_KEY=your-secret-key
 AWS_ACCOUNT_ID=your-account-id
-REPOSITORY_NAME=your-ecr-repo-name
-IMAGE_NAME=your-image-name
+LAMBDA_ECR_REPOSITORY_NAME=your-ecr-repo-name
+LAMBDA_IMAGE_NAME=your-image-name
 LAMBDA_FUNCTION_NAME=your-lambda-name
 ROLE_NAME=your-role-name
 ROLE_POLICY_NAME=your-policy-name

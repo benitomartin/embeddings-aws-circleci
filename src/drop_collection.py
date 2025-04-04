@@ -1,10 +1,13 @@
 import os
+from typing import Optional
 
 from pymilvus import MilvusClient
 
 
 def drop_collection(
-    collection_name: str | None = None, uri: str | None = None, token: str | None = None
+    collection_name: Optional[str] = None,
+    uri: Optional[str] = None,
+    token: Optional[str] = None,
 ) -> None:
     """Drop a Milvus collection.
 

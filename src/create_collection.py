@@ -1,4 +1,5 @@
 import os
+from typing import Optional
 
 from pymilvus import DataType, MilvusClient
 
@@ -25,9 +26,9 @@ def create_schema(dimension: int = 1536) -> MilvusClient.create_schema:
 
 
 def create_collection(
-    collection_name: str | None = None,
-    uri: str | None = None,
-    token: str | None = None,
+    collection_name: Optional[str] = None,
+    uri: Optional[str] = None,
+    token: Optional[str] = None,
     dimension: int = 1536,
 ) -> None:
     """Create a new Milvus collection with the specified parameters.

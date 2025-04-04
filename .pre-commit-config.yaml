@@ -43,11 +43,6 @@ repos:
     hooks:
       - id: detect-secrets
 
-  - repo: https://github.com/tox-dev/pyproject-fmt
-    rev: "v2.5.0"
-    hooks:
-      - id: pyproject-fmt
-
   - repo: https://github.com/hadolint/hadolint
     rev: v2.12.0
     hooks:
@@ -58,28 +53,11 @@ repos:
         types: ["dockerfile"]
         entry: hadolint
 
-  # - repo: https://github.com/koalaman/shellcheck-precommit
-  #   rev: v0.7.2
-  #   hooks:
-  #     - id: shellcheck
-  #       args: ["-e", "SC1091", "SC2086"]
-
-
   - repo: local
     hooks:
       - id: pytest
         name: pytest
         entry: pytest
-        language: system
-        types: [python]
-        pass_filenames: false
-
-  # Cleanup local hook at the end
-  - repo: local
-    hooks:
-      - id: clean-cache
-        name: Clean cache directories
-        entry: /bin/bash -c "find . -type d \( -name '__pycache__' -o -name '.ruff_cache' -o -name '.pytest_cache' -o -name '.mypy_cache' \) -exec rm -rf {} +"
         language: system
         types: [python]
         pass_filenames: false

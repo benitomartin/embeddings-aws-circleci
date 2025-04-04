@@ -43,13 +43,7 @@ if ! aws iam get-role --role-name ${ROLE_NAME} --region ${AWS_REGION} 2>/dev/nul
         --policy-arn arn:aws:iam::aws:policy/AWSLambdaExecute  \
         --region ${AWS_REGION}
 
-    # Add SSM Parameter Store read access for deployment flag
-    aws iam attach-role-policy \
-        --role-name ${ROLE_NAME} \
-        --policy-arn arn:aws:iam::aws:policy/AmazonSSMReadOnlyAccess \
-        --region ${AWS_REGION}
-
-    echo "IAM role created and policies attached."
+    echo "IAM role created and policy attached."
 
     # Wait for role to propagate
     echo "Waiting for role to propagate..."

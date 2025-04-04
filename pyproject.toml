@@ -2,28 +2,14 @@
 # --- Project Configuration --- #
 #################################
 
-[build-system]
-build-backend = "hatchling.build"
-
-requires = [ "hatchling" ]
-
 [project]
-name = "embeddings-aws-circleci"
+name = "aws-circleci"
 version = "0.1.0"
 description = "Automated Vector Database Management with CircleCI"
 readme = "README.md"
 requires-python = ">=3.12"
 
-######################################
-# --- Build System Configuration --- #
-######################################
 
-# Build system
-classifiers = [
-  "Programming Language :: Python :: 3 :: Only",
-  "Programming Language :: Python :: 3.12",
-  "Programming Language :: Python :: 3.13",
-]
 dependencies = [
   "boto3>=1.37.24",
   "langchain-community>=0.3.20",
@@ -39,6 +25,17 @@ optional-dependencies.dev = [
   "pytest>=8.3.5",
   "ruff>=0.11.2",
 ]
+
+######################################
+# --- Build System Configuration --- #
+######################################
+
+# Build system
+
+[build-system]
+build-backend = "hatchling.build"
+
+requires = [ "hatchling" ]
 
 [tool.hatch.build.targets.wheel]
 packages = [ "src" ]

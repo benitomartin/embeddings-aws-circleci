@@ -115,6 +115,10 @@ lint.mccabe.max-complexity = 10
 testpaths = [ "tests" ]
 python_files = [ "test_*.py" ]
 addopts = "-ra -v -s"
+filterwarnings = [
+    "ignore::DeprecationWarning",
+    "ignore::UserWarning"
+]
 
 [tool.mypy]
 files = "src, aws_lambda, tests"

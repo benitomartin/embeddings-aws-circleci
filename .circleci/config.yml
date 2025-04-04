@@ -27,6 +27,11 @@ jobs:
             uv run ruff check . --fix --exit-non-zero-on-fix
 
       - run:
+          name: Run MyPy
+          command: |
+            uv run mypy
+
+      - run:
           name: Run tests
           command: |
             uv run pytest

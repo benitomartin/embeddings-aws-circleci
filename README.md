@@ -8,6 +8,8 @@ This project implements an automated pipeline that processes PDF documents uploa
 .
 ├── .circleci/
 │   └── config.yml
+├── data/
+│   └── 1706.03762v7.pdf
 ├── src/
 │   ├── create_collection.py
 │   ├── drop_collection.py
@@ -22,6 +24,7 @@ This project implements an automated pipeline that processes PDF documents uploa
 │   └── create_lambda.sh
 ├── tests/
 │   ├── test_collection_exists.py
+│   ├── test_lambda_function.py
 │   └── test_collection_mock.py
 ├── Dockerfile
 └── pyproject.toml

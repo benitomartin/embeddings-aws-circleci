@@ -2,6 +2,8 @@
 
 This project implements an automated pipeline that processes PDF documents uploaded to S3, extracts text, generates embeddings using OpenAI, and stores them in a Zilliz Cloud (Milvus) vector database using AWS Lambda.
 
+The project has been developed as part of the following [blog](XXX)
+
 ## Project Structure
 
 ```.

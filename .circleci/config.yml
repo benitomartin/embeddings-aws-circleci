@@ -53,6 +53,7 @@ jobs:
             echo "LAMBDA_FUNCTION_NAME=${LAMBDA_FUNCTION_NAME}" >> .env
             echo "ROLE_NAME=${ROLE_NAME}" >> .env
             echo "ROLE_POLICY_NAME=${ROLE_POLICY_NAME}" >> .env
+            echo "AWS_SESSION_TOKEN=${AWS_SESSION_TOKEN}" >> .env
 
 
       - aws-cli/setup:

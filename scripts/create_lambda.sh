@@ -64,6 +64,8 @@ if ! aws lambda get-policy --function-name ${LAMBDA_FUNCTION_NAME} 2>/dev/null |
         --principal s3.amazonaws.com \
         --source-arn arn:aws:s3:::${PDF_BUCKET_NAME} \
         --region ${AWS_REGION}
+    echo "Waiting for permission to propagate..."
+    sleep 20
 else
     echo "S3 trigger permission already exists for Lambda. Skipping..."
 fi

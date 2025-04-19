@@ -40,7 +40,7 @@ if ! aws iam get-role --role-name ${ROLE_NAME} --region ${AWS_REGION} 2>/dev/nul
     # Add Lambda execution policy. Provides Put, Get access to S3 and full access to CloudWatch Logs.
     aws iam attach-role-policy \
         --role-name ${ROLE_NAME} \
-        --policy-arn arn:aws:iam::aws:policy/AWSLambdaExecute  \
+        --policy-arn arn:aws:iam::aws:policy/AWSLambda_FullAccess  \
         --region ${AWS_REGION}
 
     echo "IAM role created and policy attached."
